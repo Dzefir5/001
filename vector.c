@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <string.h>
-#include "ComplexStruct.h"
-#include "TypeInfo.h"
+#include "CustomHeader.h"
 
 /*typedef struct {
     double x;

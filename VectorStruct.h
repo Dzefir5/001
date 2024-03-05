@@ -1,3 +1,5 @@
+#pragma once
+
 #include "TypeInfo.h"
 
 typedef struct Vector {

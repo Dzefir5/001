@@ -1,5 +1,6 @@
+#pragma once
 
-typedef struct {
+typedef struct FieldInfo{
     int element_size;
     void* (*plus)(void* a, void* b );
     void* (*prod)(void* a, void* b );

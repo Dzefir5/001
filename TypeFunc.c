@@ -1,3 +1,5 @@
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "ComplexStruct.h"
@@ -61,24 +63,23 @@ void* NeuntralDouble(){
     *c=0.0;
     return (void*)c;
 }
-void* PlusComplex(void* a, void* b ){
-    Complex* c=(Complex*)malloc(sizeof(Complex));
-    c->x=((Complex*)a)->x + ((Complex*)b)->x;
-    c->y=((Complex*)a)->y + ((Complex*)b)->y;
+
+void* PlusInt(void* a, void* b ){
+    int* c=(int*)malloc(sizeof(int));
+    *c = (*((int*)a))+(*((int*)b));
     return (void*)c;
 }
-void* ProdComplex(void* a, void* b ){
-    Complex* c=(Complex*)malloc(sizeof(Complex));
-    c->x=((Complex*)a)->x * ((Complex*)b)->x - ((Complex*)a)->y * ((Complex*)b)->y;
-    c->y=((Complex*)a)->x * ((Complex*)b)->y + ((Complex*)a)->y * ((Complex*)b)->x;
+void* ProdInt(void* a, void* b ){
+    int* c=(int*)malloc(sizeof(int));
+    *c = (*((int*)a)) * ( *((int*)b) );
     return (void*)c;
 }
-void PrintComplex(void* a){
-    printf("%lf__%lf*i",((Complex*)a)->x,((Complex*)a)->y);
+void PrintInt(void* a){
+    printf("%d",(*(int*)a));
 }
-void* NeuntralComplex(){
-    Complex* c=(Complex*)malloc(sizeof(Complex));
-    c->x=0.0;
-    c->y=0.0;
+
+void* NeuntralInt(){
+    int* c = (int*)malloc(sizeof(int));
+    *c=0;
     return (void*)c;
 }

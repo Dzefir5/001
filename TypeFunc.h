@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ComplexStruct.h"
 
 void* PlusComplex(void* a, void* b );

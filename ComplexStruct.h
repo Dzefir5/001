@@ -1,6 +1,6 @@
+#pragma once
 
-
-typedef struct {
+typedef struct Complex {
     double x;
     double y;
 } Complex;

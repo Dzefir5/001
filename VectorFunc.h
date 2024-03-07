@@ -9,4 +9,4 @@ void* ScalarProduct(Vector* vec1 , Vector* vec2);
 Vector* PlusVector(Vector* vec1 , Vector* vec2);
 
 Vector* create_Vector(FieldInfo* inputType,int size,void* elemFill);
-void delete_Vector(Vector* vec);
+void delete_Vector(Vector** vec);

@@ -4,13 +4,14 @@
 #include <stdlib.h>
 #include "TypeFunc.h"
 #include "TypeInfo.h"
+#include "safemalloc.h"
 
 FieldInfo* COMPLEX_INFO(){
     static FieldInfo* ComplexInfo=NULL;
     if(ComplexInfo!=NULL){
         return ComplexInfo;
     }
-    ComplexInfo=(FieldInfo*)malloc(sizeof(FieldInfo));
+    ComplexInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
     ComplexInfo->plus=&PlusComplex;
     ComplexInfo->prod=&ProdComplex;
     ComplexInfo->print=&PrintComplex;
@@ -25,7 +26,7 @@ FieldInfo* INT_INFO(){
     if(IntInfo!=NULL){
         return IntInfo;
     }
-    IntInfo=(FieldInfo*)malloc(sizeof(FieldInfo));
+    IntInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
     IntInfo->plus=&PlusInt;
     IntInfo->prod=&ProdInt;
     IntInfo->print=&PrintInt;
@@ -39,7 +40,7 @@ FieldInfo* FLOAT_INFO(){
     if(FloatInfo!=NULL){
         return FloatInfo;
     }
-    FloatInfo=(FieldInfo*)malloc(sizeof(FieldInfo));
+    FloatInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
     FloatInfo->plus=&PlusFloat;
     FloatInfo->prod=&ProdFloat;
     FloatInfo->print=&PrintFloat;
@@ -53,7 +54,7 @@ FieldInfo* DOUBLE_INFO(){
     if(DoubleInfo!=NULL){
         return DoubleInfo;
     }
-    DoubleInfo=(FieldInfo*)malloc(sizeof(FieldInfo));
+    DoubleInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
     DoubleInfo->plus=&PlusDouble;
     DoubleInfo->prod=&ProdDouble;
     DoubleInfo->print=&PrintDouble;

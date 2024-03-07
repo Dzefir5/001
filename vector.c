@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
-#include <string.h>
 #include "CustomHeader.h"
-
+#include "UnitTestScalarProd.h"
+#include "UnitTestVectorSum.h"
 /*typedef struct {
     double x;
     double y;
@@ -242,11 +242,27 @@ void delete_Vector(Vector* vec){
 }
 */
 int main(){
-    int a=2;
+    /*int a=2;
     int b =3;
     Complex cmp1 = {1.5,3.5};
     Vector* myvec1 =  create_Vector(COMPLEX_INFO(),3,(void*)&cmp1);
     Vector* myvec2 =  create_Vector(INT_INFO(),3,(void*)&a);
-    myvec1->printVec(myvec1);
+    Vector* myvec3 =  create_Vector(INT_INFO(),3,(void*)&a);
+    myvec1->printVec(myvec1);*/
+    
+    //if(myvec2->typeInfo==myvec3->typeInfo){ printf("TYPE EQUAL");}
+    //delete_Vector(&myvec1);
+    //delete_Vector(&myvec2);
+
+    testScalarProdInt();
+    testScalarProdFloat();
+    testScalarProdDouble();
+    testScalarProdComplex();
+
+    testSumInt();
+    testSumFloat();
+    testSumDouble();
+    testSumComplex();
+    
     return 0;
 }

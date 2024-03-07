@@ -22,3 +22,8 @@ void* ProdDouble(void* a, void* b );
 void PrintDouble(void* a);
 void* NeuntralDouble();
 
+
+int CompareFloat(void* a , void* b , float eps);
+int CompareDouble(void* a , void* b , double eps);
+int CompareComplex(void* a , void* b ,double eps);
+

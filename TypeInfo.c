@@ -6,8 +6,23 @@
 #include "TypeInfo.h"
 #include "safemalloc.h"
 
+
+FieldInfo* INT_INFO(){
+    static FieldInfo* IntInfo=NULL;                     // Выделение статической памяти под указатель при запуске программы
+    if(IntInfo!=NULL){                                  // Проверка на то инициализирован ли обьект
+        return IntInfo;                                 // Возвращение указателя на обьект 
+    }
+    IntInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
+    IntInfo->plus=&PlusInt;                             //
+    IntInfo->prod=&ProdInt;                             //
+    IntInfo->print=&PrintInt;                           // Инициализация обьекта при его первом использовании
+    IntInfo->zero=&NeuntralInt;                         //
+    IntInfo->element_size=sizeof(int);                  //
+    return IntInfo;                                     // Возвравщение указателя на обьект   P.S Указатели на обьекты информации разных типов различны и постоянны что позволяет реализовать сравнение типов через сравнение указателей
+}
+
 FieldInfo* COMPLEX_INFO(){
-    static FieldInfo* ComplexInfo=NULL;
+    static FieldInfo* ComplexInfo=NULL;  
     if(ComplexInfo!=NULL){
         return ComplexInfo;
     }
@@ -18,21 +33,6 @@ FieldInfo* COMPLEX_INFO(){
     ComplexInfo->zero=&NeuntralComplex;
     ComplexInfo->element_size=sizeof(Complex);
     return ComplexInfo;
-    
-}
-
-FieldInfo* INT_INFO(){
-    static FieldInfo* IntInfo=NULL;
-    if(IntInfo!=NULL){
-        return IntInfo;
-    }
-    IntInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
-    IntInfo->plus=&PlusInt;
-    IntInfo->prod=&ProdInt;
-    IntInfo->print=&PrintInt;
-    IntInfo->zero=&NeuntralInt;
-    IntInfo->element_size=sizeof(int);
-    return IntInfo;
 }
 
 FieldInfo* FLOAT_INFO(){

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "ComplexStruct.h"
 
-
+    //Функции операций над типом Float
 void* PlusFloat(void* a, void* b ){
     float* c=(float*)malloc(sizeof(float));
     *c = *((float*)a)+*((float*)b);
@@ -22,7 +22,7 @@ void* NeuntralFloat(){
     *c=0.0f;
     return (void*)c;
 }
-
+//Дополнительная функция сравнения обьектов типа Float - c погрешность eps
 int CompareFloat(void* a , void* b , float eps){
     if(a==NULL || b==NULL){
         printf("NULL pointer argument");
@@ -30,6 +30,8 @@ int CompareFloat(void* a , void* b , float eps){
     }
     return fabs( *(float*)a - *(float*)b ) < eps;
 }
+
+ //Функции операций над типом Double
 
 void* PlusDouble(void* a, void* b ){
     double* c=(double*)malloc(sizeof(double));
@@ -50,6 +52,7 @@ void* NeuntralDouble(){
     return (void*)c;
 }
 
+//Дополнительная функция сравнения обьектов типа Double - c погрешность eps
 int CompareDouble(void* a , void* b , double eps){
     if(a==NULL || b==NULL){
         printf("NULL pointer argument");
@@ -58,6 +61,8 @@ int CompareDouble(void* a , void* b , double eps){
     return fabs( *(double*)a - *(double*)b ) < eps;
 }
 
+
+ //Функции операций над типом Complex
 
 void* PlusComplex(void* a, void* b ){
     Complex* c=(Complex*)malloc(sizeof(Complex));
@@ -81,14 +86,13 @@ void* NeuntralComplex(){
     return (void*)c;
 }
 
+//Дополнительная функция сравнения обьектов типа Complex - c погрешность eps
 int CompareComplex(void* a , void* b ,double eps){
     return CompareDouble(a,b,eps ) && CompareDouble( (void*)( (double*)a+1 ) , (void*)( (double*)b+1 ) ,eps  );
 }
 
 
-
-
-
+ //Функции операций над типом Int
 void* PlusInt(void* a, void* b ){
     int* c=(int*)malloc(sizeof(int));
     *c = (*((int*)a))+(*((int*)b));

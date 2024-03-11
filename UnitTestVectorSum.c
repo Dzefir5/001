@@ -2,12 +2,21 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include "CustomHeader.h"
-#include "UnitTestScalarProd.h"
-#include "TypeFunc.h"
 
 static float floatEps = 1e-6;		//взять из библиотек
 static double doubleEps = 1e-15;
 
+int randInt(int max,int min){
+	return rand()%(max-min) + min; 
+}
+float randFloat(float max,float min){
+	float scale = (float)rand() / (float)RAND_MAX;
+	return min + scale * (max-min);
+}
+double randDouble(double max,double min){
+	double scale = (double)rand() / (float)RAND_MAX;
+	return min + scale * (max-min);
+}
 
 //сделать проверки на каждую операцию 
 
@@ -19,42 +28,42 @@ void testSumInt()
 {
 	int n = 10;
     int example = 0; 
-	Vector* vec1 = create_Vector(INT_INFO(), n, &example);
-	Vector* vec2 = create_Vector(INT_INFO(), n, &example);
+	Vector* vec1 = createVector(INT_INFO(), n, &example);
+	Vector* vec2 = createVector(INT_INFO(), n, &example);
 	int* testVec = (int*)safeMalloc(n * sizeof(int));
 	for (int i = 0; i < n; i++)
 	{
 		int a = (rand() - rand())%1000;
-        vec1->set(vec1, i, &a);
+        setToVector(vec1, i, &a);
 		int b = (rand() - rand())%1000;
-		vec2->set(vec2, i, &b);
+		setToVector(vec2, i, &b);
 
 		testVec[i] = a+b;
 	}
-
-	Vector* result = PlusVector(vec1, vec2);
+	
+	Vector* result = plusVector(vec1, vec2);
 	printf("\n");
 	for (int i = 0; i < n; i++)
 	{   
-		printf(" %3d == %3d - ",testVec[i],*((int*)(result->get(result,i))) );
-        if(testVec[i]==*((int*)(result->get(result,i)))){
+		printf(" %3d == %3d - ",testVec[i],*((int*)(getFromVector(result,i))) );
+        if(testVec[i]==*((int*)(getFromVector(result,i)))){
             printf("TRUE");
         }else{
             printf("FALSE");
         }
         printf("\n");
 	}
-	delete_Vector(&vec1);
-	delete_Vector(&vec2);
-	delete_Vector(&result);
+	deleteVector(&vec1);
+	deleteVector(&vec2);
+	deleteVector(&result);
 }
 
 void testSumFloat()
 {
 	int n = 10;
     float example = 0.0f; 
-	Vector* vec1 = create_Vector(FLOAT_INFO(), n, &example);
-	Vector* vec2 = create_Vector(FLOAT_INFO(), n, &example);
+	Vector* vec1 = createVector(FLOAT_INFO(), n, &example);
+	Vector* vec2 = createVector(FLOAT_INFO(), n, &example);
 	float* testVec = (float*)safeMalloc(n * sizeof(float));
 	if (testVec == NULL)
 	{
@@ -64,36 +73,35 @@ void testSumFloat()
 	for (int i = 0; i < n; i++)
 	{
 		float a = randFloat(0.0f,123.01432f);
-        vec1->set(vec1, i, &a);
+        setToVector(vec1, i, &a);
 		float b = randFloat(0.0f,240.62147f);
-		vec2->set(vec2, i, &b);
+		setToVector(vec2, i, &b);
 		testVec[i] = a+b;
 	}
 
-	Vector* result = PlusVector(vec1, vec2);
-	//result->printVec(result);
+	Vector* result = plusVector(vec1, vec2);
 	printf("\n");
 	for (int i = 0; i < n; i++)
 	{   
-		printf(" %10.10f == %10.10f - ",testVec[i],*((float*)(result->get(result,i))) );
-        if(CompareFloat( (void*)(testVec+i),(result->get(result,i)),floatEps)){
+		printf(" %10.10f == %10.10f - ",testVec[i],*((float*)(getFromVector(result,i))) );
+        if(CompareFloat( (void*)(testVec+i),(getFromVector(result,i)),floatEps)){
             printf("TRUE");
         }else{
             printf("FALSE");
         }
         printf("\n");
 	}
-	delete_Vector(&vec1);
-	delete_Vector(&vec2);
-	delete_Vector(&result);
+	deleteVector(&vec1);
+	deleteVector(&vec2);
+	deleteVector(&result);
 }
 
 void testSumDouble()
 {
 	int n = 10;
     double example = 0.0; 
-	Vector* vec1 = create_Vector(DOUBLE_INFO(), n, &example);
-	Vector* vec2 = create_Vector(DOUBLE_INFO(), n, &example);
+	Vector* vec1 = createVector(DOUBLE_INFO(), n, &example);
+	Vector* vec2 = createVector(DOUBLE_INFO(), n, &example);
 	double* testVec = (double*)safeMalloc(n * sizeof(double));
 	if (testVec == NULL)
 	{
@@ -103,29 +111,29 @@ void testSumDouble()
 	for (int i = 0; i < n; i++)
 	{
 		double a = randDouble(0.0,123.01432);
-        vec1->set(vec1, i, &a);
+        setToVector(vec1, i, &a);
 		double b = randDouble(0.0,240.62147);
-		vec2->set(vec2, i, &b);
+		setToVector(vec2, i, &b);
 
 		testVec[i] = a+b;
 	}
 
-	Vector* result = PlusVector(vec1, vec2);
+	Vector* result = plusVector(vec1, vec2);
 	//result->printVec(result);
 	printf("\n");
 	for (int i = 0; i < n; i++)
 	{   
-		printf(" %10.16lf == %10.16lf - ",testVec[i],*((double*)(result->get(result,i))) );
-        if(CompareDouble( (void*)(testVec+i),(result->get(result,i)),doubleEps)){
+		printf(" %10.16lf == %10.16lf - ",testVec[i],*((double*)(getFromVector(result,i))) );
+        if(CompareDouble( (void*)(testVec+i),(getFromVector(result,i)),doubleEps)){
             printf("TRUE");
         }else{
             printf("FALSE");
         }
         printf("\n");
 	}
-	delete_Vector(&vec1);
-	delete_Vector(&vec2);
-	delete_Vector(&result);
+	deleteVector(&vec1);
+	deleteVector(&vec2);
+	deleteVector(&result);
 }
 
 
@@ -133,8 +141,8 @@ void testSumComplex()
 {
 	int n = 10;
     Complex example = {0.0,0.0}; 
-	Vector* vec1 = create_Vector(COMPLEX_INFO(), n, &example);
-	Vector* vec2 = create_Vector(COMPLEX_INFO(), n, &example);
+	Vector* vec1 = createVector(COMPLEX_INFO(), n, &example);
+	Vector* vec2 = createVector(COMPLEX_INFO(), n, &example);
 	Complex* testVec = (Complex*)safeMalloc(n * sizeof(Complex));
 	if (testVec == NULL)
 	{
@@ -146,32 +154,32 @@ void testSumComplex()
 		double ax =randDouble(52.0131,1123.0);
 		double ay =randDouble(53.02414,1424.02131);
 		Complex a = {ax,ay};
-        vec1->set(vec1, i, (void*)&a);
+        setToVector(vec1, i, (void*)&a);
 		double bx =randDouble(31.55420,1875.04114);
 		double by =randDouble(38.310,1123.1314);
 		Complex b = {bx,by};
-		vec2->set(vec2, i, (void*)&b);
+		setToVector(vec2, i, (void*)&b);
 
 		testVec[i].x+= a.x + b.x;
 		testVec[i].y+= a.y + b.y;
 	}
 
-	Vector* result = PlusVector(vec1, vec2);
+	Vector* result = plusVector(vec1, vec2);
 	//result->printVec(result);
 	printf("\n");
 	for (int i = 0; i < n; i++)
 	{   
-		printf(" %lf+i*( %lf ) == %lf+i*( %lf )  - ",testVec[i].x,testVec[i].y,((Complex*)(result->get(result,i)))->x ,((Complex*)(result->get(result,i)))->y );
-        if(CompareComplex( (void*)(testVec+i),(result->get(result,i)),doubleEps)){
+		printf("%lf+i*(%lf) == %lf+i*( %lf )  - ",testVec[i].x,testVec[i].y,((Complex*)(getFromVector(result,i)))->x ,((Complex*)(getFromVector(result,i)))->y );
+        if(CompareComplex( (void*)(testVec+i),(getFromVector(result,i)),doubleEps)){
             printf("TRUE");
         }else{
             printf("FALSE");
         }
         printf("\n");
 	}
-	delete_Vector(&vec1);
-	delete_Vector(&vec2);
-	delete_Vector(&result);
+	deleteVector(&vec1);
+	deleteVector(&vec2);
+	deleteVector(&result);
 }
 
 

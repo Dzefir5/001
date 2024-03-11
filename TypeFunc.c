@@ -5,22 +5,19 @@
 
 
     //Функции операций над типом Float
-void* PlusFloat(void* a, void* b ){
-    float* c=(float*)malloc(sizeof(float));
-    *c = *((float*)a)+*((float*)b);
+void* PlusFloat(void* a, void* b, void* c){
+    *(float*)c = *((float*)a)+*((float*)b);
     return (void*)c;
 }
-void* ProdFloat(void* a, void* b ){
-    float* c=(float*)malloc(sizeof(float));
-    *c = (*((float*)a)) * ( *((float*)b) );
+void* ProdFloat(void* a, void* b, void* c){
+    *(float*)c = (*((float*)a)) * ( *((float*)b) );
     return (void*)c;
 }
 void PrintFloat(void* a){
     printf("%f",(*(float*)a));
 }
-void* NeuntralFloat(){
-    float* c = (float*)malloc(sizeof(float));
-    *c=0.0f;
+void* NeuntralFloat(void* c){
+    *(float*)c=0.0f;
     return (void*)c;
 }
 //Дополнительная функция сравнения обьектов типа Float - c погрешность eps
@@ -34,22 +31,19 @@ int CompareFloat(void* a , void* b , float eps){
 
  //Функции операций над типом Double
 
-void* PlusDouble(void* a, void* b ){
-    double* c=(double*)malloc(sizeof(double));
-    *c = *((double*)a)+*((double*)b);
+void* PlusDouble(void* a, void* b, void* c){
+    *(double*)c = *((double*)a)+*((double*)b);
     return (void*)c;
 }
-void* ProdDouble(void* a, void* b ){
-    double* c=(double*)malloc(sizeof(double));
-    *c = (*((double*)a)) * ( *((double*)b) );
+void* ProdDouble(void* a, void* b, void* c ){
+    *(double*)c = (*((double*)a)) * ( *((double*)b) );
     return (void*)c;
 }
 void PrintDouble(void* a){
     printf("%lf",(*(double*)a));
 }
-void* NeuntralDouble(){
-    double* c = (double*)malloc(sizeof(double));
-    *c=0.0;
+void* NeuntralDouble(void* c){
+    *(double*)c=0.0;
     return (void*)c;
 }
 
@@ -65,25 +59,22 @@ int CompareDouble(void* a , void* b , double eps){
 
  //Функции операций над типом Complex
 
-void* PlusComplex(void* a, void* b ){
-    Complex* c=(Complex*)malloc(sizeof(Complex));
-    c->x=((Complex*)a)->x + ((Complex*)b)->x;
-    c->y=((Complex*)a)->y + ((Complex*)b)->y;
+void* PlusComplex(void* a, void* b,void* c ){
+    ((Complex*)c)->x=((Complex*)a)->x + ((Complex*)b)->x;
+    ((Complex*)c)->y=((Complex*)a)->y + ((Complex*)b)->y;
     return (void*)c;
 }
-void* ProdComplex(void* a, void* b ){
-    Complex* c=(Complex*)malloc(sizeof(Complex));
-    c->x=((Complex*)a)->x * ((Complex*)b)->x - ((Complex*)a)->y * ((Complex*)b)->y;
-    c->y=((Complex*)a)->x * ((Complex*)b)->y + ((Complex*)a)->y * ((Complex*)b)->x;
+void* ProdComplex(void* a, void* b,void* c  ){
+   ((Complex*)c)->x=((Complex*)a)->x * ((Complex*)b)->x - ((Complex*)a)->y * ((Complex*)b)->y;
+    ((Complex*)c)->y=((Complex*)a)->x * ((Complex*)b)->y + ((Complex*)a)->y * ((Complex*)b)->x;
     return (void*)c;
 }
 void PrintComplex(void* a){
     printf("%lf__%lf*i",((Complex*)a)->x,((Complex*)a)->y);
 }
-void* NeuntralComplex(){
-    Complex* c=(Complex*)malloc(sizeof(Complex));
-    c->x=0.0;
-    c->y=0.0;
+void* NeuntralComplex(void* c ){
+    ((Complex*)c)->x=0.0;
+    ((Complex*)c)->y=0.0;
     return (void*)c;
 }
 
@@ -94,22 +85,19 @@ int CompareComplex(void* a , void* b ,double eps){
 
 
  //Функции операций над типом Int
-void* PlusInt(void* a, void* b ){
-    int* c=(int*)malloc(sizeof(int));
-    *c = (*((int*)a))+(*((int*)b));
+void* PlusInt(void* a, void* b, void* c){
+    *(int*)c = (*((int*)a))+(*((int*)b));
     return (void*)c;
 }
-void* ProdInt(void* a, void* b ){
-    int* c=(int*)malloc(sizeof(int));
-    *c = (*((int*)a)) * ( *((int*)b) );
+void* ProdInt(void* a, void* b, void* c ){
+    *(int*)c = (*((int*)a)) * ( *((int*)b) );
     return (void*)c;
 }
 void PrintInt(void* a){
     printf("%d",(*(int*)a));
 }
 
-void* NeuntralInt(){
-    int* c = (int*)malloc(sizeof(int));
-    *c=0;
+void* NeuntralInt(void* c){
+    *(int*)c=0;
     return (void*)c;
 }

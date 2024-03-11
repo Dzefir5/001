@@ -4,25 +4,25 @@
 
 
 
-void* PlusComplex(void* a, void* b );
-void* ProdComplex(void* a, void* b );
+void* PlusComplex(void* a, void* b, void* c );
+void* ProdComplex(void* a, void* b, void* c );
 void  PrintComplex(void* a);
-void* NeuntralComplex();
+void* NeuntralComplex(void* c);
 
-void* PlusInt(void* a, void* b );
-void* ProdInt(void* a, void* b );
+void* PlusInt(void* a, void* b, void* c );
+void* ProdInt(void* a, void* b, void* c );
 void PrintInt(void* a);
-void* NeuntralInt();
+void* NeuntralInt(void* c);
 
-void* PlusFloat(void* a, void* b );
-void* ProdFloat(void* a, void* b );
+void* PlusFloat(void* a, void* b , void* c);
+void* ProdFloat(void* a, void* b, void* c);
 void PrintFloat(void* a);
 void* NeuntralFloat();
 
-void* PlusDouble(void* a, void* b );
-void* ProdDouble(void* a, void* b );
+void* PlusDouble(void* a, void* b, void* c );
+void* ProdDouble(void* a, void* b, void* c );
 void PrintDouble(void* a);
-void* NeuntralDouble();
+void* NeuntralDouble(void* c);
 
 
 int CompareFloat(void* a , void* b , float eps);

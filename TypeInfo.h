@@ -1,12 +1,10 @@
 #pragma once
 
-//РЕАЛИЗОВАТЬ БЕЗ MALLOC
-
 typedef struct FieldInfo{
     int element_size;
-    void* (*plus)(void* a, void* b );
-    void* (*prod)(void* a, void* b ); //rename to mult
-    void* (*zero)();
+    void* (*plus)(void* a, void* b,void* c);
+    void* (*mult)(void* a, void* b,void* c); 
+    void* (*zero)(void* c);
     void  (*print)(void* a);
 } FieldInfo;
 

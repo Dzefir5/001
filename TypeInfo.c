@@ -1,5 +1,4 @@
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "TypeFunc.h"
@@ -14,7 +13,7 @@ FieldInfo* INT_INFO(){
     }
     IntInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
     IntInfo->plus=&PlusInt;                             //
-    IntInfo->prod=&ProdInt;                             //
+    IntInfo->mult=&ProdInt;                             //
     IntInfo->print=&PrintInt;                           // Инициализация обьекта при его первом использовании
     IntInfo->zero=&NeuntralInt;                         //
     IntInfo->element_size=sizeof(int);                  //
@@ -28,7 +27,7 @@ FieldInfo* COMPLEX_INFO(){
     }
     ComplexInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
     ComplexInfo->plus=&PlusComplex;
-    ComplexInfo->prod=&ProdComplex;
+    ComplexInfo->mult=&ProdComplex;
     ComplexInfo->print=&PrintComplex;
     ComplexInfo->zero=&NeuntralComplex;
     ComplexInfo->element_size=sizeof(Complex);
@@ -42,7 +41,7 @@ FieldInfo* FLOAT_INFO(){
     }
     FloatInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
     FloatInfo->plus=&PlusFloat;
-    FloatInfo->prod=&ProdFloat;
+    FloatInfo->mult=&ProdFloat;
     FloatInfo->print=&PrintFloat;
     FloatInfo->zero=&NeuntralFloat;
     FloatInfo->element_size=sizeof(float);
@@ -56,7 +55,7 @@ FieldInfo* DOUBLE_INFO(){
     }
     DoubleInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
     DoubleInfo->plus=&PlusDouble;
-    DoubleInfo->prod=&ProdDouble;
+    DoubleInfo->mult=&ProdDouble;
     DoubleInfo->print=&PrintDouble;
     DoubleInfo->zero=&NeuntralDouble;
     DoubleInfo->element_size=sizeof(double);

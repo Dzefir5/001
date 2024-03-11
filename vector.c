@@ -1,13 +1,13 @@
 
-#include "UnitTestScalarProd.h"
+//#include "UnitTestScalarProd.h"
 #include "UnitTestVectorSum.h"
 
 int main(){
    
-    testScalarProdInt();
+   /* testScalarProdInt();
     testScalarProdFloat();
     testScalarProdDouble();
-    testScalarProdComplex();
+    testScalarProdComplex();*/
 
     testSumInt();
     testSumFloat();

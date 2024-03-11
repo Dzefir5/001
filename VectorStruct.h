@@ -2,6 +2,8 @@
 
 #include "TypeInfo.h"
 
+//скрыть определение структуры , вынести методы по вне / или vtable(скорее не надо)
+
 typedef struct Vector {
     int size;
     void* elements;

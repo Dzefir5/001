@@ -2,6 +2,8 @@
 
 #include "ComplexStruct.h"
 
+
+
 void* PlusComplex(void* a, void* b );
 void* ProdComplex(void* a, void* b );
 void  PrintComplex(void* a);

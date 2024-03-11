@@ -1,3 +1,3 @@
 #pragma once
 
-void* safeMalloc(int size);
+void* safeMalloc(size_t size);

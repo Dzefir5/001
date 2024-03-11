@@ -5,8 +5,15 @@
 #include "UnitTestScalarProd.h"
 #include "TypeFunc.h"
 
-float FloatEps = 1e-6;
-double DoubleEps = 1e-15;
+static float floatEps = 1e-6;		//взять из библиотек
+static double doubleEps = 1e-15;
+
+
+//сделать проверки на каждую операцию 
+
+//Именно проверка порядка выполнения операций внутри вектора  - атомарные тесты
+
+
 
 void testSumInt()
 {
@@ -14,12 +21,7 @@ void testSumInt()
     int example = 0; 
 	Vector* vec1 = create_Vector(INT_INFO(), n, &example);
 	Vector* vec2 = create_Vector(INT_INFO(), n, &example);
-	int* testVec = (int*)malloc(n * sizeof(int));
-	if (testVec == NULL)
-	{
-		printf("memory ERROR\n");
-		return;
-	}
+	int* testVec = (int*)safeMalloc(n * sizeof(int));
 	for (int i = 0; i < n; i++)
 	{
 		int a = (rand() - rand())%1000;
@@ -49,12 +51,11 @@ void testSumInt()
 
 void testSumFloat()
 {
-	float FloatEps = 1e-6;
 	int n = 10;
     float example = 0.0f; 
 	Vector* vec1 = create_Vector(FLOAT_INFO(), n, &example);
 	Vector* vec2 = create_Vector(FLOAT_INFO(), n, &example);
-	float* testVec = (float*)malloc(n * sizeof(float));
+	float* testVec = (float*)safeMalloc(n * sizeof(float));
 	if (testVec == NULL)
 	{
 		printf("memory ERROR\n");
@@ -75,7 +76,7 @@ void testSumFloat()
 	for (int i = 0; i < n; i++)
 	{   
 		printf(" %10.10f == %10.10f - ",testVec[i],*((float*)(result->get(result,i))) );
-        if(CompareFloat( (void*)(testVec+i),(result->get(result,i)),FloatEps)){
+        if(CompareFloat( (void*)(testVec+i),(result->get(result,i)),floatEps)){
             printf("TRUE");
         }else{
             printf("FALSE");
@@ -89,12 +90,11 @@ void testSumFloat()
 
 void testSumDouble()
 {
-	double DoubleEps = 1e-15;
 	int n = 10;
     double example = 0.0; 
 	Vector* vec1 = create_Vector(DOUBLE_INFO(), n, &example);
 	Vector* vec2 = create_Vector(DOUBLE_INFO(), n, &example);
-	double* testVec = (double*)malloc(n * sizeof(double));
+	double* testVec = (double*)safeMalloc(n * sizeof(double));
 	if (testVec == NULL)
 	{
 		printf("memory ERROR\n");
@@ -116,7 +116,7 @@ void testSumDouble()
 	for (int i = 0; i < n; i++)
 	{   
 		printf(" %10.16lf == %10.16lf - ",testVec[i],*((double*)(result->get(result,i))) );
-        if(CompareDouble( (void*)(testVec+i),(result->get(result,i)),DoubleEps)){
+        if(CompareDouble( (void*)(testVec+i),(result->get(result,i)),doubleEps)){
             printf("TRUE");
         }else{
             printf("FALSE");
@@ -131,12 +131,11 @@ void testSumDouble()
 
 void testSumComplex()
 {
-	double DoubleEps = 1e-15;
 	int n = 10;
     Complex example = {0.0,0.0}; 
 	Vector* vec1 = create_Vector(COMPLEX_INFO(), n, &example);
 	Vector* vec2 = create_Vector(COMPLEX_INFO(), n, &example);
-	Complex* testVec = (Complex*)malloc(n * sizeof(Complex));
+	Complex* testVec = (Complex*)safeMalloc(n * sizeof(Complex));
 	if (testVec == NULL)
 	{
 		printf("memory ERROR\n");
@@ -158,12 +157,12 @@ void testSumComplex()
 	}
 
 	Vector* result = PlusVector(vec1, vec2);
-	result->printVec(result);
+	//result->printVec(result);
 	printf("\n");
 	for (int i = 0; i < n; i++)
 	{   
 		printf(" %lf+i*( %lf ) == %lf+i*( %lf )  - ",testVec[i].x,testVec[i].y,((Complex*)(result->get(result,i)))->x ,((Complex*)(result->get(result,i)))->y );
-        if(CompareComplex( (void*)(testVec+i),(result->get(result,i)),DoubleEps)){
+        if(CompareComplex( (void*)(testVec+i),(result->get(result,i)),doubleEps)){
             printf("TRUE");
         }else{
             printf("FALSE");

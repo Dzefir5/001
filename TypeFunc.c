@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "ComplexStruct.h"
 
+
     //Функции операций над типом Float
 void* PlusFloat(void* a, void* b ){
     float* c=(float*)malloc(sizeof(float));

@@ -32,7 +32,7 @@ void setToVector(Vector* vec, int index,void* input){
     SegFaultErrorCheck(vec,index);
     if(input==NULL){
         printf("\n NULL pointer exception in SET Function \n");
-        exit (1);
+        //exit (1);
     }
     memcpy( (char*)( vec->elements) +index*vec->typeInfo->element_size ,input,vec->typeInfo->element_size);
 }

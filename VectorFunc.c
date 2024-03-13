@@ -5,7 +5,7 @@
 #include "VectorStruct.h"
 #include "safemalloc.h"
 #include "TypeInfo.h"
-
+#include "TestPrototype.h"
 
 typedef struct Vector {
     int size;
@@ -35,19 +35,19 @@ FieldInfo* getVectorType(Vector* vec){
 
 
 void SegFaultErrorCheck(Vector* vec,int index){
-    if(vec->size<=index){
+    if(getVectorSize(vec)<=index){
         printf("\n Out of Bound Error (Segmentation fault)\n");
         exit (11);
     }
 }
 int TypeCorrection(Vector* vec1 , Vector* vec2){
-    if(vec1->typeInfo==vec2->typeInfo){
+    if(getVectorType(vec1)==getVectorType(vec2)){
         return 1;
     }
     return 0;
 }
 int SizeCorrection(Vector* vec1 , Vector* vec2){
-    if(vec1->size==vec2->size){
+    if(getVectorSize(vec1)==getVectorSize(vec2)){
         return 1;
     }
     return 0;
@@ -80,11 +80,14 @@ void* scalarProduct(Vector* vec1 , Vector* vec2, void* result){
     }
     void* preresult=safeMalloc(vec1->typeInfo->element_size);
     vec1->typeInfo->zero(result);
-    for(int i=0;i<vec1->size;i++){
+    ObserverTrigger('N');
+    for(int i=0;i<getVectorSize(vec1);i++){
         vec1->typeInfo->mult(getFromVector(vec1,i),getFromVector(vec2,i),preresult);
+        ObserverTrigger('M');
         vec1->typeInfo->plus(preresult,result,result);
-        
+        ObserverTrigger('P');   
     }
+    ObserverTrigger('X');
     free(preresult);
     return result;
 }
@@ -110,8 +113,10 @@ Vector* plusVector(Vector* vec1 , Vector* vec2){
     Vector* resultVec=createVector(vec1->typeInfo,getVectorSize(vec1),buf);
     for(int i =0 ; i <vec1->size;i++){
         vec1->typeInfo->plus(getFromVector(vec1,i),getFromVector(vec2,i),buf);
+        ObserverTrigger('P');  
         setToVector(resultVec,i,buf);
     }
+    ObserverTrigger('X');
     return resultVec;
 }
 

@@ -4,3 +4,5 @@
 #include "VectorStruct.h"
 #include "VectorFunc.h"
 #include "safemalloc.h"
+
+#include "TestPrototype.h"

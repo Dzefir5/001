@@ -10,10 +10,10 @@ void* scalarProduct(Vector* vec1, Vector* vec2,void* result);
 Vector* plusVector(Vector* vec1, Vector* vec2);
 
 int getVectorSize(Vector* vec);
-void* getVectorPtr(Vector* vec);
+FieldInfo* getVectorType(Vector* vec);
 
 Vector* createVector(FieldInfo* inputType, int size, void* elemFill);
 void deleteVector(Vector** vec);
 
-int TypeCorrection(Vector* vec1 , Vector* vec2);
-int TypeCorrection(Vector* vec1 , Vector* vec2);
+int isTypeEqual(Vector* vec1 , Vector* vec2);
+int isSizeEqual(Vector* vec1 , Vector* vec2); 

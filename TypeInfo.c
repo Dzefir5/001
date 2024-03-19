@@ -4,7 +4,7 @@
 #include "TypeFunc.h"
 #include "TypeInfo.h"
 #include "safemalloc.h"
-
+#include "TestPrototype.h"
 
 FieldInfo* INT_INFO(){
     static FieldInfo* IntInfo=NULL;                     // Выделение статической памяти под указатель при запуске программы
@@ -17,7 +17,8 @@ FieldInfo* INT_INFO(){
     IntInfo->print=&PrintInt;                           // Инициализация обьекта при его первом использовании
     IntInfo->zero=&NeuntralInt;                         //
     IntInfo->element_size=sizeof(int);                  //
-    return IntInfo;                                     // Возвравщение указателя на обьект   P.S Указатели на обьекты информации разных типов различны и постоянны что позволяет реализовать сравнение типов через сравнение указателей
+    return IntInfo;                                     // Возвравщение указателя на обьект   
+    //P.S Указатели на обьекты информации разных типов различны и постоянны что позволяет реализовать сравнение типов через сравнение указателей
 }
 
 FieldInfo* COMPLEX_INFO(){
@@ -60,4 +61,18 @@ FieldInfo* DOUBLE_INFO(){
     DoubleInfo->zero=&NeuntralDouble;
     DoubleInfo->element_size=sizeof(double);
     return DoubleInfo;
+}
+
+FieldInfo* TEST_INFO(){
+    static FieldInfo* TestInfo=NULL;
+    if(TestInfo!=NULL){
+        return TestInfo;
+    }
+    TestInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
+    TestInfo->plus=&PlusTest;
+    TestInfo->mult=&ProdTest;
+    TestInfo->print=&PrintTest;
+    TestInfo->zero=&NeuntralTest;
+    TestInfo->element_size=sizeof(Node);
+    return TestInfo;
 }

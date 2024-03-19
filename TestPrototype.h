@@ -1,14 +1,20 @@
 #pragma once
 
-typedef struct Observer{
-    char* CommandList;
-    int counter ;
-    int TestLimit;
-}TestObserver;
+typedef struct Node {
+	char* symbol;
+	struct Node* leftNode;
+	struct Node* rightNode;
+} Node;
 
-extern TestObserver* object;
+Node* newNode();
+void copyNode( const Node* from, Node* to );
+Node* newNodeCopy( const Node* input );
+void initNode(Node* input,char* insymbol);
 
-TestObserver* ObserverTrigger(char signal);
+void printAlgorithm( char *buff,int* offset, int *remainingSize, Node* node );
+
+void testDotProduct();
+void testVecSum();
 
 int testIntSum(int* flag);
 int testIntMult(int* flag);
@@ -24,4 +30,4 @@ int testFloatNeutral(int* flag);
 
 int testComplexSum(int* flag);
 int testComplexMult(int* flag);
-int testComplexeNeutral(int* flag);
+int testComplexNeutral(int* flag);

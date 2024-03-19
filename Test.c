@@ -4,23 +4,29 @@
 #include "CustomHeader.h"
 #include "TestPrototype.h"
 
+//clang Test.c TestPrototype.c VectorFunc.c VectorStruct.c TypeFunc.c TypeInfo.c safemalloc.c -Wall -Wextra -o test.exe
+
 int main(){
-    ObserverTrigger('0');
+    int flag = 0 ;
+    testIntSum(&flag);
+    testFloatSum(&flag);
+    testDoubleSum(&flag);
+    testComplexSum(&flag);
 
-    int n = 10;
-    int example = 0; 
-	Vector* vec1 = createVector(INT_INFO(), n, &example);
-	Vector* vec2 = createVector(INT_INFO(), n, &example);
-    Vector* result = plusVector(vec1, vec1);
-    int* c = malloc(sizeof(int));
-    scalarProduct(vec1,vec2,(void*)c);
+    testIntMult(&flag);
+    testFloatMult(&flag);
+    testDoubleMult(&flag);
+    testComplexMult(&flag);
 
+    testIntNeutral(&flag);
+    testFloatNeutral(&flag);
+    testDoubleNeutral(&flag);
+    testComplexNeutral(&flag);
 
-    deleteVector(&vec1);
-	deleteVector(&vec2);
-	deleteVector(&result);
-    for(int i =0; ObserverTrigger('0')->CommandList[i] != '0';i++){
-        printf("_( %c )_\n",ObserverTrigger('0')->CommandList[i]);
-    }
+    testDotProduct();
+    testVecSum();
+    printf("Error count_%d_",flag);
+
+    printf( "Test succeeded.\n" );
     return 0;
 }

@@ -165,9 +165,10 @@ int testComplexNeutral(int* flag){
 
 
 Node* newNode() {
-	return (Node*)malloc( TEST_INFO()->element_size );
+	return (Node*)safeMalloc( TEST_INFO()->element_size );
 }
 void copyNode( const Node* from, Node* to ) {
+    assert(from && to);
 	memcpy( to, from, TEST_INFO()->element_size );
 }
 Node* newNodeCopy( const Node* input ) {
@@ -176,20 +177,21 @@ Node* newNodeCopy( const Node* input ) {
 	return result;
 }
 void initNode(Node* input,char* insymbol){
+    assert(input&&insymbol);
     input->leftNode =NULL;
     input->rightNode = NULL;
-	input->symbol =insymbol; // demo only, use malloc()+strcpy() in real life! 
+	input->symbol =strcpy((char*)safeMalloc(sizeof(char)*strlen(insymbol)) , insymbol); // demo only, use malloc()+strcpy() in real life! 
 }
 
 
 void printAlgorithm(char *buff,int* offset, int *remainingSize, Node* node ) {
-	assert( node ); // not null
-	assert( node->symbol ); // not null
+	assert( node ); 
+	assert( node->symbol ); 
 	
     if( node->leftNode ) {
 		printAlgorithm(buff,offset,remainingSize, node->leftNode );
 	}
-    int stepLength = strlen( node->symbol ); // separator + lexem
+    int stepLength = strlen( node->symbol ); 
 	strcpy( buff+(*offset), node->symbol );
 	*offset += stepLength;
 	(*remainingSize) -= stepLength;
@@ -199,8 +201,8 @@ void printAlgorithm(char *buff,int* offset, int *remainingSize, Node* node ) {
     
 }
 void printNode( Node* node ) {
-	assert( node ); // not null
-	assert( node->symbol ); // not null
+	assert( node ); 
+	assert( node->symbol );
     printf("%s\n",node->symbol);
     if(node->leftNode){
         printf(" left : %s\n",node->leftNode->symbol);
@@ -246,9 +248,6 @@ void testDotProduct() {
 
     printAlgorithm(buff,&offset,&remainingSize, &dotProduct );
     assert( strcmp( buff, expectedResult ) == 0 );
-
-    //printf("\n%s\n",buff);
-    //printAlgorithm(bufferStart,':',&remainingSize, &dotProduct );
 }
 void testVecSum() {
 	Node* fill = newNode();
@@ -268,14 +267,8 @@ void testVecSum() {
 	    int remainingSize = sizeof(buff);
         int offset = 0;
         printAlgorithm(buff,&offset,&remainingSize, (Node*)getFromVector(z,i));
-        //printf("_%s_\n",buff);
         assert( strcmp( buff, expectedResult[i] ) == 0 );
     }
-    
-    //assert( strcmp( buff, expectedResult ) == 0 );
-
-    //printf("\n%s\n",buff);
-    //printAlgorithm(bufferStart,':',&remainingSize, &dotProduct );
 }
 
 

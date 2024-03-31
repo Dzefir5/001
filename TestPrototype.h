@@ -16,18 +16,18 @@ void printAlgorithm( char *buff,int* offset, int *remainingSize, Node* node );
 void testDotProduct();
 void testVecSum();
 
-int testIntSum(int* flag);
-int testIntMult(int* flag);
-int testIntNeutral(int* flag);
+void testIntSum();
+void testIntMult();
+void testIntNeutral();
 
-int testDoubleSum(int* flag);
-int testDoubleMult(int* flag);
-int testDoubleNeutral(int* flag);
+void testDoubleSum();
+void testDoubleMult();
+void testDoubleNeutral();
 
-int testFloatSum(int* flag);
-int testFloatMult(int* flag);
-int testFloatNeutral(int* flag);
+void testFloatSum();
+void testFloatMult();
+void testFloatNeutral();
 
-int testComplexSum(int* flag);
-int testComplexMult(int* flag);
-int testComplexNeutral(int* flag);
+void testComplexSum();
+void testComplexMult();
+void testComplexNeutral();

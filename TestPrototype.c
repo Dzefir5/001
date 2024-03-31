@@ -1,166 +1,111 @@
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
-#include "CustomHeader.h"
 #include <assert.h>
 #include <float.h>
 #include <malloc.h>
 
-int testIntSum(int* flag){
+#include "safemalloc.h"
+#include "ComplexStruct.h"
+#include "TypeInfo.h"
+#include "TypeFunc.h"
+#include "VectorFunc.h"
+#include "TestPrototype.h"
+#include "VectorStruct.h"
+
+void testIntSum(){
     int a=-20;
     int b=35;
     int c1=a+b;
     int* c2 =(int*)safeMalloc(INT_INFO()->element_size);
     INT_INFO()->plus((void*)&a,(void*)&b,(void*)c2);
-    if(*c2!=c1){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(*c2==c1);
 }
-int testIntMult(int* flag){
+void testIntMult(){
     int a=-20;
     int b=35;
     int c1=a*b;
     int* c2 =(int*)safeMalloc(INT_INFO()->element_size);
     INT_INFO()->mult((void*)&a,(void*)&b,(void*)c2);
-    if(*c2!=c1){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(*c2==c1);
 }
-int testIntNeutral(int* flag){
+void testIntNeutral(){
     int c1=0;
     int* c2 =(int*)safeMalloc(INT_INFO()->element_size);
     INT_INFO()->zero((void*)c2);
-    if(*c2!=c1){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(*c2==c1);
 }
 
 
-
-
-int testDoubleSum(int* flag){
+void testDoubleSum(){
     double a=-20.2;
     double b=35.5;
     double c1=a+b;
     double* c2 =(double*)safeMalloc(DOUBLE_INFO()->element_size);
     DOUBLE_INFO()->plus((void*)&a,(void*)&b,(void*)c2);
-    if(!CompareDouble((void*)&c1,(void*)c2,DBL_EPSILON)){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(compareDouble((void*)&c1,(void*)c2,DBL_EPSILON));
 }
-int testDoubleMult(int* flag){
+void testDoubleMult(){
     double a=-2.5;
     double b=50.5;
     double c1=a*b;
     double* c2 =(double*)safeMalloc(DOUBLE_INFO()->element_size);
     DOUBLE_INFO()->mult((void*)&a,(void*)&b,(void*)c2);
-    if(!CompareDouble((void*)&c1,(void*)c2,DBL_EPSILON)){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(compareDouble((void*)&c1,(void*)c2,DBL_EPSILON));
 }
-int testDoubleNeutral(int* flag){
+void testDoubleNeutral(){
     double c1=0.0;
     double* c2 =(double*)safeMalloc(DOUBLE_INFO()->element_size);
     DOUBLE_INFO()->zero((void*)c2);
-    if(!CompareDouble((void*)&c1,(void*)c2,DBL_EPSILON)){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(compareDouble((void*)&c1,(void*)c2,DBL_EPSILON));
 }
 
-int testFloatSum(int* flag){
+void testFloatSum(){
     float a=-20.2f;
     float b=35.5f;
     float c1=a+b;
     float* c2 =(float*)safeMalloc(FLOAT_INFO()->element_size);
     FLOAT_INFO()->plus((void*)&a,(void*)&b,(void*)c2);
-    if(!CompareFloat((void*)&c1,(void*)c2,FLT_EPSILON)){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(compareFloat((void*)&c1,(void*)c2,FLT_EPSILON));
 }
-int testFloatMult(int* flag){
+void testFloatMult(){
     float a=-2.5f;
     float b=50.5f;
     float c1=a*b;
     float* c2 =(float*)safeMalloc(FLOAT_INFO()->element_size);
     FLOAT_INFO()->mult((void*)&a,(void*)&b,(void*)c2);
-    if(!CompareFloat((void*)&c1,(void*)c2,FLT_EPSILON)){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(compareFloat((void*)&c1,(void*)c2,FLT_EPSILON));
 }
-int testFloatNeutral(int* flag){
+void testFloatNeutral(){
     float c1=0.0f;
     float* c2 =(float*)safeMalloc(FLOAT_INFO()->element_size);
     FLOAT_INFO()->zero((void*)c2);
-    if(!CompareFloat((void*)&c1,(void*)c2,FLT_EPSILON)){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(compareFloat((void*)&c1,(void*)c2,FLT_EPSILON));
 }
 
 
 
-int testComplexSum(int* flag){
+void testComplexSum(){
     Complex a={-20.2, 1.5};
     Complex b={35.5 , 2.5};
     Complex c1= {a.x+b.x,a.y+b.y};
     Complex* c2 =(Complex*)safeMalloc(COMPLEX_INFO()->element_size);
     COMPLEX_INFO()->plus((void*)&a,(void*)&b,(void*)c2);
-    if(!CompareComplex((void*)&c1,(void*)c2,DBL_EPSILON)){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(compareComplex((void*)&c1,(void*)c2,DBL_EPSILON));
 }
-int testComplexMult(int* flag){
+void testComplexMult(){
     Complex a={-20.2, 1.5};
     Complex b={35.5 , 2.5};
     Complex c1= {a.x*b.x - a.y*b.y,a.y*b.x +a.x*b.y};
     Complex* c2 =(Complex*)safeMalloc(COMPLEX_INFO()->element_size);
     COMPLEX_INFO()->mult((void*)&a,(void*)&b,(void*)c2);
-    if(!CompareComplex((void*)&c1,(void*)c2,DBL_EPSILON)){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(compareComplex((void*)&c1,(void*)c2,DBL_EPSILON));
 }
-int testComplexNeutral(int* flag){
+void testComplexNeutral(){
     Complex c1={0.0,0.0};
     Complex* c2 =(Complex*)safeMalloc(COMPLEX_INFO()->element_size);
     COMPLEX_INFO()->zero((void*)c2);
-    if(!CompareComplex((void*)&c1,(void*)c2,DBL_EPSILON)){
-        (*flag)++;
-        return 1;
-    }else{
-        return 0;
-    }
+    assert(compareComplex((void*)&c1,(void*)c2,DBL_EPSILON));
 }
 
 
@@ -180,9 +125,8 @@ void initNode(Node* input,char* insymbol){
     assert(input&&insymbol);
     input->leftNode =NULL;
     input->rightNode = NULL;
-	input->symbol =strcpy((char*)safeMalloc(sizeof(char)*strlen(insymbol)) , insymbol); // demo only, use malloc()+strcpy() in real life! 
+	input->symbol =strcpy((char*)safeMalloc(sizeof(char)*strlen(insymbol)) , insymbol);
 }
-
 
 void printAlgorithm(char *buff,int* offset, int *remainingSize, Node* node ) {
 	assert( node ); 

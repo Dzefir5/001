@@ -1,6 +1,6 @@
-
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "TypeFunc.h"
 #include "TypeInfo.h"
 #include "safemalloc.h"
@@ -12,10 +12,10 @@ FieldInfo* INT_INFO(){
         return IntInfo;                                 // Возвращение указателя на обьект 
     }
     IntInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
-    IntInfo->plus=&PlusInt;                             //
-    IntInfo->mult=&ProdInt;                             //
-    IntInfo->print=&PrintInt;                           // Инициализация обьекта при его первом использовании
-    IntInfo->zero=&NeuntralInt;                         //
+    IntInfo->plus=&plusInt;                             //
+    IntInfo->mult=&prodInt;                             //
+    IntInfo->print=&printInt;                           // Инициализация обьекта при его первом использовании
+    IntInfo->zero=&neuntralInt;                         //
     IntInfo->element_size=sizeof(int);                  //
     return IntInfo;                                     // Возвравщение указателя на обьект   
     //P.S Указатели на обьекты информации разных типов различны и постоянны что позволяет реализовать сравнение типов через сравнение указателей
@@ -27,10 +27,10 @@ FieldInfo* COMPLEX_INFO(){
         return ComplexInfo;
     }
     ComplexInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
-    ComplexInfo->plus=&PlusComplex;
-    ComplexInfo->mult=&ProdComplex;
-    ComplexInfo->print=&PrintComplex;
-    ComplexInfo->zero=&NeuntralComplex;
+    ComplexInfo->plus=&plusComplex;
+    ComplexInfo->mult=&prodComplex;
+    ComplexInfo->print=&printComplex;
+    ComplexInfo->zero=&neuntralComplex;
     ComplexInfo->element_size=sizeof(Complex);
     return ComplexInfo;
 }
@@ -41,10 +41,10 @@ FieldInfo* FLOAT_INFO(){
         return FloatInfo;
     }
     FloatInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
-    FloatInfo->plus=&PlusFloat;
-    FloatInfo->mult=&ProdFloat;
-    FloatInfo->print=&PrintFloat;
-    FloatInfo->zero=&NeuntralFloat;
+    FloatInfo->plus=&plusFloat;
+    FloatInfo->mult=&prodFloat;
+    FloatInfo->print=&printFloat;
+    FloatInfo->zero=&neuntralFloat;
     FloatInfo->element_size=sizeof(float);
     return FloatInfo;
 }
@@ -55,10 +55,10 @@ FieldInfo* DOUBLE_INFO(){
         return DoubleInfo;
     }
     DoubleInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
-    DoubleInfo->plus=&PlusDouble;
-    DoubleInfo->mult=&ProdDouble;
-    DoubleInfo->print=&PrintDouble;
-    DoubleInfo->zero=&NeuntralDouble;
+    DoubleInfo->plus=&plusDouble;
+    DoubleInfo->mult=&prodDouble;
+    DoubleInfo->print=&printDouble;
+    DoubleInfo->zero=&neuntralDouble;
     DoubleInfo->element_size=sizeof(double);
     return DoubleInfo;
 }
@@ -69,10 +69,10 @@ FieldInfo* TEST_INFO(){
         return TestInfo;
     }
     TestInfo=(FieldInfo*)safeMalloc(sizeof(FieldInfo));
-    TestInfo->plus=&PlusTest;
-    TestInfo->mult=&ProdTest;
-    TestInfo->print=&PrintTest;
-    TestInfo->zero=&NeuntralTest;
+    TestInfo->plus=&plusTest;
+    TestInfo->mult=&prodTest;
+    TestInfo->print=&printTest;
+    TestInfo->zero=&neuntralTest;
     TestInfo->element_size=sizeof(Node);
     return TestInfo;
 }

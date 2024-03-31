@@ -19,12 +19,7 @@ int getVectorSize(Vector* vec){
     }
     return 0;
 }
-/*void* getVectorPtr(Vector* vec){
-    if(vec!=NULL){
-        return vec->elements;
-    }
-    return NULL;
-}*/
+
 FieldInfo* getVectorType(Vector* vec){
     if(vec!=NULL){
         return vec->typeInfo;
@@ -34,7 +29,7 @@ FieldInfo* getVectorType(Vector* vec){
 
 
 
-void OutOfBoundErrorCheck(Vector* vec,int index){ //OutOFbOund
+void outOfBoundErrorCheck(Vector* vec,int index){ //OutOFbOund
     if(getVectorSize(vec)<=index){
         printf("\n Out of Bound Error\n");
         exit (11);
@@ -48,11 +43,11 @@ int isSizeEqual(Vector* vec1 , Vector* vec2){
 }
 
 void* getFromVector(Vector* vec,int index){
-    OutOfBoundErrorCheck(vec,index);
+    outOfBoundErrorCheck(vec,index);
     return  (void*)( (char*)vec->elements + (vec->typeInfo->element_size)*index );
 }
 void setToVector(Vector* vec, int index,void* input){
-    OutOfBoundErrorCheck(vec,index);
+    outOfBoundErrorCheck(vec,index);
     if(input==NULL){
         printf("\n NULL pointer exception in SET Function \n");
         exit (1);

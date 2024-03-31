@@ -4,33 +4,33 @@
 #include "TestPrototype.h"
 
 
-void PlusComplex(void* a, void* b, void* c );
-void ProdComplex(void* a, void* b, void* c );
-void PrintComplex(void* a);
-void NeuntralComplex(void* c);
+void plusComplex(void* a, void* b, void* c );
+void prodComplex(void* a, void* b, void* c );
+void printComplex(void* a);
+void neuntralComplex(void* c);
 
-void PlusInt(void* a, void* b, void* c );
-void ProdInt(void* a, void* b, void* c );
-void PrintInt(void* a);
-void NeuntralInt(void* c);
+void plusInt(void* a, void* b, void* c );
+void prodInt(void* a, void* b, void* c );
+void printInt(void* a);
+void neuntralInt(void* c);
 
-void PlusFloat(void* a, void* b , void* c);
-void ProdFloat(void* a, void* b, void* c);
-void PrintFloat(void* a);
-void NeuntralFloat(void* c);
+void plusFloat(void* a, void* b , void* c);
+void prodFloat(void* a, void* b, void* c);
+void printFloat(void* a);
+void neuntralFloat(void* c);
 
-void PlusDouble(void* a, void* b, void* c );
-void ProdDouble(void* a, void* b, void* c );
-void PrintDouble(void* a);
-void NeuntralDouble(void* c);
+void plusDouble(void* a, void* b, void* c );
+void prodDouble(void* a, void* b, void* c );
+void printDouble(void* a);
+void neuntralDouble(void* c);
 
 void testOperation(const char *insymbol , Node* left, Node* right , Node* result);
-void PlusTest(void* a, void* b, void* c );
-void ProdTest(void* a, void* b, void* c );
-void PrintTest(void* a);
-void NeuntralTest(void* c);
+void plusTest(void* a, void* b, void* c );
+void prodTest(void* a, void* b, void* c );
+void printTest(void* a);
+void neuntralTest(void* c);
 
-int CompareFloat(void* a , void* b , float eps);
-int CompareDouble(void* a , void* b , double eps);
-int CompareComplex(void* a , void* b ,double eps);
+int compareFloat(void* a , void* b , float eps);
+int compareDouble(void* a , void* b , double eps);
+int compareComplex(void* a , void* b ,double eps);
 

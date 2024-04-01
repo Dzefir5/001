@@ -16,18 +16,22 @@ void printAlgorithm( char *buff,int* offset, int *remainingSize, Node* node );
 void testDotProduct();
 void testVecSum();
 
+void testInt();
 void testIntSum();
 void testIntMult();
 void testIntNeutral();
 
+void testDouble();
 void testDoubleSum();
 void testDoubleMult();
 void testDoubleNeutral();
 
+void testFloat();
 void testFloatSum();
 void testFloatMult();
 void testFloatNeutral();
 
+void testComplex();
 void testComplexSum();
 void testComplexMult();
 void testComplexNeutral();

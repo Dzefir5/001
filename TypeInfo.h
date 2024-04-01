@@ -8,6 +8,7 @@ typedef struct FieldInfo{
     void  (*print)(void* a);
 } FieldInfo;
 
+//в идеальном виде : всё в раздельные .h .c файлы под екаждый тип
 FieldInfo* INT_INFO();
 FieldInfo* FLOAT_INFO();
 FieldInfo* DOUBLE_INFO();

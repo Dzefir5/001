@@ -1,7 +1,9 @@
 #pragma once
 
-#include "VectorStruct.h"
+
 #include "TypeInfo.h"
+
+typedef struct Vector Vector;
 
 void* getFromVector(Vector* vec, int index);
 void setToVector(Vector* vec, int index, void* input);

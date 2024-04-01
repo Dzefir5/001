@@ -11,7 +11,7 @@
 #include "TypeFunc.h"
 #include "VectorFunc.h"
 #include "TestPrototype.h"
-#include "VectorStruct.h"
+
 
 void testIntSum(){
     int a=-20;
@@ -128,6 +128,8 @@ void initNode(Node* input,char* insymbol){
 	input->symbol =strcpy((char*)safeMalloc(sizeof(char)*strlen(insymbol)) , insymbol);
 }
 
+//обратная польская нотация - изучить
+
 void printAlgorithm(char *buff,int* offset, int *remainingSize, Node* node ) {
 	assert( node ); 
 	assert( node->symbol ); 
@@ -165,9 +167,6 @@ static const char *X2 = "x2";
 static const char *Y2 = "y2";
 static const char *X3 = "x3";
 static const char *Y3 = "y3";
-static const char *CROSS = "*";
-static const char *PLUS = "+";
-static const char *ZERO = "0";
 
 static const char *expectedResult = "x1*y1+x2*y2+x3*y3";
 
@@ -185,13 +184,15 @@ void testDotProduct() {
     TEST_INFO()->zero(&dotProduct);
 	scalarProduct( x, y, (void*)&dotProduct );
 	
-    
 	char buff[100];
 	int remainingSize = sizeof(buff);
     int offset = 0;
 
     printAlgorithm(buff,&offset,&remainingSize, &dotProduct );
     assert( strcmp( buff, expectedResult ) == 0 );
+
+    deleteVector(&x);
+    deleteVector(&y);
 }
 void testVecSum() {
 	Node* fill = newNode();
@@ -213,6 +214,10 @@ void testVecSum() {
         printAlgorithm(buff,&offset,&remainingSize, (Node*)getFromVector(z,i));
         assert( strcmp( buff, expectedResult[i] ) == 0 );
     }
+
+    deleteVector(&x);
+    deleteVector(&y);
+    deleteVector(&z);
 }
 
 

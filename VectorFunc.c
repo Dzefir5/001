@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "VectorStruct.h"
 #include "safemalloc.h"
 #include "TypeInfo.h"
 #include "TestPrototype.h"

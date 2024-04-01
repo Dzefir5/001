@@ -1,13 +1,15 @@
 #include <stdio.h>
+
 #include "TestPrototype.h"
 
 //clang Test.c TestPrototype.c VectorFunc.c TypeFunc.c TypeInfo.c safemalloc.c -Wall -Wextra -o test.exe
 
 int main(){
-    testIntSum();
+    testIntSum();  //обернуть в функции тестов для каждого типа
     testFloatSum();
     testDoubleSum();
     testComplexSum();
+
     testIntMult();
     testFloatMult();
     testDoubleMult();

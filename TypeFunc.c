@@ -111,12 +111,6 @@ void neuntralInt(void* c){
     *(int*)c=0;
 }
 
-static const char *X1 = "x1";
-static const char *Y1 = "y1";
-static const char *X2 = "x2";
-static const char *Y2 = "y2";
-static const char *X3 = "x3";
-static const char *Y3 = "y3";
 static const char *CROSS = "*";
 static const char *PLUS = "+";
 static const char *ZERO = "0";

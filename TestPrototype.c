@@ -109,6 +109,31 @@ void testComplexNeutral(){
 }
 
 
+void testInt(){
+    testIntMult();
+    testIntNeutral();
+    testIntSum();
+}
+
+void testFloat(){
+    testFloatMult();
+    testFloatNeutral();
+    testFloatSum();
+}
+
+void testDouble(){
+    testDoubleMult();
+    testDoubleNeutral();
+    testDoubleSum();
+}
+
+void testComplex(){
+    testComplexMult();
+    testComplexNeutral();
+    testComplexSum();
+}
+
+
 Node* newNode() {
 	return (Node*)safeMalloc( TEST_INFO()->element_size );
 }

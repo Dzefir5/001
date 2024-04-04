@@ -121,6 +121,7 @@ void testOperation(const char *insymbol , Node* left, Node* right , Node* result
     result->leftNode = newNodeCopy( left );
 	result->rightNode = newNodeCopy( right );
     result->symbol = strcpy((char*)safeMalloc(sizeof(char)*strlen(insymbol)) , insymbol);
+    //result->symbol = (char*)insymbol;
 }
 
 void plusTest(void* a, void* b, void* c){

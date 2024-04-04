@@ -192,10 +192,10 @@ void clearTree( Node** node ) {
     if( (*node)->leftNode ) {
 		clearTree(&((*node)->leftNode));
 	}
-    
 	if((*node)->rightNode ) {
 		clearTree(&((*node)->rightNode));
 	}
+    //printNode(*node);
     free((*node)->symbol);
     free(*node);
     *node=NULL;

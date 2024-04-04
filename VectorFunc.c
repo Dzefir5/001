@@ -67,7 +67,6 @@ void scalarProduct(Vector* vec1 , Vector* vec2, void* result){
     }
     void* preresult1=safeMalloc(vec1->typeInfo->element_size);
     void* preresult2=safeMalloc(vec1->typeInfo->element_size);
-    void* sum=safeMalloc(vec1->typeInfo->element_size);
     vec1->typeInfo->mult(getFromVector(vec1,0),getFromVector(vec2,0),preresult1);
     for(int i=1;i<getVectorSize(vec1);i++){
         vec1->typeInfo->mult(getFromVector(vec1,i),getFromVector(vec2,i),preresult2);

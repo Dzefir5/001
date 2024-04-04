@@ -50,7 +50,7 @@ void testDoubleMult(){
     double b=50.5;
     double c1=a*b;
     double c2 ;
-    DOUBLE_INFO()->mult((void*)&a,(void*)&b,(void*)c2);
+    DOUBLE_INFO()->mult((void*)&a,(void*)&b,(void*)&c2);
     assert(compareDouble((void*)&c1,(void*)&c2,DBL_EPSILON));
 }
 void testDoubleNeutral(){
@@ -153,6 +153,22 @@ void initNode(Node* input,char* insymbol){
 	input->symbol =strcpy((char*)safeMalloc(sizeof(char)*strlen(insymbol)) , insymbol);
 }
 
+
+void printNode( Node* node ) {
+	assert( node ); 
+	assert( node->symbol );
+    printf("%s\n",node->symbol);
+    if(node->leftNode){
+        printf(" left : %s\n",node->leftNode->symbol);
+    }else{
+        printf(" left : Null\n");
+    }
+    if(node->rightNode){
+        printf(" right : %s\n",node->rightNode->symbol);
+    }else{
+        printf(" right : Null\n");
+    }
+}
 //обратная польская нотация - изучить
 
 void printAlgorithm(char *buff,int* offset, int *remainingSize, Node* node ) {
@@ -171,20 +187,19 @@ void printAlgorithm(char *buff,int* offset, int *remainingSize, Node* node ) {
 	}
     
 }
-void printNode( Node* node ) {
-	assert( node ); 
-	assert( node->symbol );
-    printf("%s\n",node->symbol);
-    if(node->leftNode){
-        printf(" left : %s\n",node->leftNode->symbol);
-    }else{
-        printf(" left : Null\n");
-    }
-    if(node->rightNode){
-        printf(" right : %s\n",node->rightNode->symbol);
-    }else{
-        printf(" right : Null\n");
-    }
+
+void clearTree( Node** node ) {
+    if( (*node)->leftNode ) {
+		clearTree(&((*node)->leftNode));
+	}
+    
+	if((*node)->rightNode ) {
+		clearTree(&((*node)->rightNode));
+	}
+    free((*node)->symbol);
+    free(*node);
+    *node=NULL;
+    
 }
 static const char *X1 = "x1";
 static const char *Y1 = "y1";
@@ -205,15 +220,16 @@ void testDotProduct() {
 	initNode( (Node*)getFromVector(y,0), Y1 );
 	initNode( (Node*)getFromVector(y,1), Y2 );
 	initNode( (Node*)getFromVector(y,2), Y3 );
-	Node dotProduct ;
-    TEST_INFO()->zero(&dotProduct);
-	scalarProduct( x, y, (void*)&dotProduct );
+	Node* dotProduct =newNode();
+    TEST_INFO()->zero(dotProduct);
+	scalarProduct( x, y, (void*)dotProduct );
 	
 	char buff[100];
 	int remainingSize = sizeof(buff);
     int offset = 0;
 
-    printAlgorithm(buff,&offset,&remainingSize, &dotProduct );
+    printAlgorithm(buff,&offset,&remainingSize, dotProduct );
+    clearTree(&dotProduct);
     assert( strcmp( buff, expectedResult ) == 0 );
 
     deleteVector(&x);

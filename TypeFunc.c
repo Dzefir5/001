@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <string.h>
 
+#include "safemalloc.h"
 #include "ComplexStruct.h"
 #include "TestPrototype.h"
 
@@ -118,7 +120,7 @@ static const char *ZERO = "0";
 void testOperation(const char *insymbol , Node* left, Node* right , Node* result){
     result->leftNode = newNodeCopy( left );
 	result->rightNode = newNodeCopy( right );
-    result->symbol = (char*)insymbol;
+    result->symbol = strcpy((char*)safeMalloc(sizeof(char)*strlen(insymbol)) , insymbol);
 }
 
 void plusTest(void* a, void* b, void* c){
